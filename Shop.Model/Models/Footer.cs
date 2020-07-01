@@ -7,8 +7,8 @@ namespace Shop.Model.Models
     public class Footer
     {
         [Key]
-        public int ID { set; get; }
-
+        [MaxLength(50)]
+        public string ID { set; get; }
         [Required]
         public string Content { set; get; }
     }

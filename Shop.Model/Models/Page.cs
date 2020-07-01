@@ -12,12 +12,17 @@ namespace Shop.Model.Models
     public class Page
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
         [Required]
+        [MaxLength(256)]
         public string Name { set; get; }
+        [Required]
+        [MaxLength(256)]
+        [Column(TypeName ="varchar")]
+        public string Alias { set; get; }
+        
         public string Content { set; get; }
-        public string MetaKeyword { set; get; }
-        public string MetaDescription { set; get; }
-        public bool? Status { set; get; }
+        
     }
 }

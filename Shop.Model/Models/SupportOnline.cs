@@ -12,16 +12,21 @@ namespace Shop.Model.Models
     public class SupportOnline
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
         [Required]
+        [MaxLength(50)]
         public string Name { set; get; }
         public string Department { set; get; }
+        [MaxLength(50)]
         public string Skype { set; get; }
-        [Required]
+        [MaxLength(50)]
         public string Mobile { set; get; }
-        [Required]
+        [MaxLength(50)]
         public string Email { set; get; }
+        [MaxLength(50)]
         public string Facebook { set; get; }
         public bool Status { set; get; }
+        public int? DisplayOrder { set; get; }
     }
 }

@@ -9,7 +9,7 @@ namespace Shop.Model.Models
     {
         [Key]
         public Guid ID { set; get; }
-
+        [Required]
         public DateTime VisitedDate { set; get; }
         public string IPAddress { set; get; }
     }
