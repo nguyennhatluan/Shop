@@ -52,6 +52,7 @@ namespace Shop.Data.Infrastructure
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
+            /// AsEnumerable(): trả về kiểu IEnumerable
             foreach (T obj in objects)
                 dbSet.Remove(obj);
         }
@@ -131,6 +132,12 @@ namespace Shop.Data.Infrastructure
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
+        }
+
+        public void Delete(int id)
+        {
+            var entity = dbSet.Find(id);
+            dbSet.Remove(entity);
         }
         #endregion
     }
