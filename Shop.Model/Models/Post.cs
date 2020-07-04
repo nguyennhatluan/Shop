@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Shop.Model.Models
 {
     [Table("Posts")]
-    public class Post:Auditable
+    public class Post : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,7 +20,7 @@ namespace Shop.Model.Models
         public string Name { set; get; }
         [Required]
         [MaxLength(256)]
-        [Column(TypeName ="varchar")]
+        [Column(TypeName = "varchar")]
         public string Alias { set; get; }
         [Required]
         public int CategoryID { set; get; }
@@ -34,5 +34,7 @@ namespace Shop.Model.Models
         public int? ViewCount { set; get; }
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { set; get; }
+
+       // public virtual IEnumerable<PostTag> PostTags { set; get; }
     }
 }
