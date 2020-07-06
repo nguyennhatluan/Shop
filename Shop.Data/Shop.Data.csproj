@@ -62,8 +62,13 @@
     <Compile Include="Migrations\202007030714033_part2.designer.cs">
       <DependentUpon>202007030714033_part2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007060820028_addTbError.cs" />
+    <Compile Include="Migrations\202007060820028_addTbError.designer.cs">
+      <DependentUpon>202007060820028_addTbError.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
@@ -103,6 +108,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007030714033_part2.resx">
       <DependentUpon>202007030714033_part2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060820028_addTbError.resx">
+      <DependentUpon>202007060820028_addTbError.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
