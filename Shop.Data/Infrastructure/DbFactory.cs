@@ -10,10 +10,6 @@ namespace Shop.Data.Infrastructure
     {
         private ShopDbContext dbContext;
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
 
         public ShopDbContext Init()
         {
