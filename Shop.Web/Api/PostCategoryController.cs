@@ -1,6 +1,8 @@
-﻿using Shop.Model.Models;
+﻿using AutoMapper;
+using Shop.Model.Models;
 using Shop.Service;
 using Shop.Web.Infrastructure.Core;
+using Shop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +26,22 @@ namespace Shop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
+                //var listCategory = _postCategoryService.GetAll();
+
+                //HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+
+
+                //return response;
                 var listCategory = _postCategoryService.GetAll();
-
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
-
+                var config = new MapperConfiguration(cfg => {
+                    cfg.CreateMap<Post, PostViewModel>();
+                    cfg.CreateMap<PostTag, PostTagViewModel>();
+                    cfg.CreateMap<Tag, TagViewModel>();
+                });
+                IMapper mapper = config.CreateMapper();
+               // var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+                var listPostCategoryVm = mapper.Map<List<PostCategoryViewModel>>(listCategory);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 
                 return response;
             });

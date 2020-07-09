@@ -66,6 +66,10 @@
     <Compile Include="Migrations\202007060820028_addTbError.designer.cs">
       <DependentUpon>202007060820028_addTbError.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007090615416_modifyPostModel.cs" />
+    <Compile Include="Migrations\202007090615416_modifyPostModel.designer.cs">
+      <DependentUpon>202007090615416_modifyPostModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -111,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007060820028_addTbError.resx">
       <DependentUpon>202007060820028_addTbError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007090615416_modifyPostModel.resx">
+      <DependentUpon>202007090615416_modifyPostModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
