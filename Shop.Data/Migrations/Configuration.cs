@@ -1,5 +1,8 @@
 ﻿namespace Shop.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Shop.Model.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -18,6 +21,33 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ShopDbContext()));
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ShopDbContext()));
+
+            var user = new ApplicationUser()
+            {
+                UserName = "nhatluan",
+                Email = "nhatluan98@gmail.com",
+                EmailConfirmed = true,
+                BirthDay = DateTime.Now,
+                FullName = "Nguyen Nhat Luan"
+
+            };
+
+            manager.Create(user, "123654$");
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
+
+            var adminUser = manager.FindByEmail("tedu.international@gmail.com");
+
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+
         }
     }
 }

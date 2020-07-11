@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Data.Infrastructure
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class //Generic
     {
         // Marks an entity as new
         T Add(T entity);
