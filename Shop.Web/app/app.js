@@ -4,7 +4,7 @@
 
 
 (function () {
-    angular.module('shop', ['shop.products', 'shop.common']).config(config);
+    angular.module('shop', ['shop.products', 'shop.common', 'shop.product_categories']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

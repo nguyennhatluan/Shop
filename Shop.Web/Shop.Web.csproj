@@ -189,6 +189,7 @@
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
+    <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -207,6 +208,8 @@
     <Compile Include="Models\PostCategoryViewModel.cs" />
     <Compile Include="Models\PostTagViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
+    <Compile Include="Models\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -221,7 +224,10 @@
     <Content Include="app\components\products\productListController.js" />
     <Content Include="app\components\products\productListView.html" />
     <Content Include="app\components\products\products.module.js" />
+    <Content Include="app\components\product_categories\productCategoryListController.js" />
+    <Content Include="app\components\product_categories\productCategoryListView.html" />
     <Content Include="app\Shared\modules\shop.common.js" />
+    <Content Include="app\Shared\services\apiService.js" />
     <Content Include="Assets\admin\libs\dist\css\adminlte.css" />
     <Content Include="Assets\admin\libs\dist\css\adminlte.min.css" />
     <Content Include="Assets\admin\libs\dist\css\alt\adminlte.components.css" />
@@ -1921,7 +1927,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\product_categories\" />
     <Folder Include="app\components\users\" />
     <Folder Include="app\Shared\directive\" />
     <Folder Include="app\Shared\footer\" />
@@ -2028,6 +2033,7 @@
     <Content Include="Assets\admin\libs\plugins\summernote\summernote.min.js.map" />
     <Content Include="Assets\admin\libs\plugins\sweetalert2-theme-bootstrap-4\bootstrap-4.scss" />
     <Content Include="Assets\admin\libs\plugins\toastr\toastr.js.map" />
+    <Content Include="app\components\product_categories\productCategory.module.js" />
     <None Include="packages.config" />
     <Content Include="readme.md" />
     <Content Include="Views\Admin\Index.cshtml" />
