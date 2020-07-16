@@ -23,10 +23,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="width: 10px">ID</th>
-                            <th>Tên danh mục</th>
-                            <th>Ngày tạo</th>
-                            <th style="width: 40px">Trạng thái</th>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 60%">Tên danh mục</th>
+                            <th style="width: 15%">Ngày tạo</th>
+                            <th style="width: 10%">Trạng thái</th>
+                            <th style="width: 10%">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +35,14 @@
                             <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
                             <td>
-                                {{item.CreatedDate}}
+                                {{item.CreatedDate |date:'dd/mm/yy hh:mm:ss'}}
                             </td>
-                            <td><span class="badge bg-danger">{{item.Status}}</span></td>
+                            <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status |statusFilter}}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary"><i class="fa fa-pencil-ruler"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                            </td>
+                           
                         </tr>
                         
                     </tbody>
