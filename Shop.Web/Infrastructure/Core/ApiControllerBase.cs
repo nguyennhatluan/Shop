@@ -23,10 +23,12 @@ namespace Shop.Web.Infrastructure.Core
 
         protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage,Func<HttpResponseMessage> function)
         {
+            // Func<HttpResponseMessage> function callback method
             HttpResponseMessage response = null;
             try
             {
                 response = function.Invoke();
+                
             }
             catch (DbEntityValidationException ex)
             {

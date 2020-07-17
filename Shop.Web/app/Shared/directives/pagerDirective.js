@@ -14,7 +14,7 @@
             },
             replace: true, //replace: true có nghĩa là nội dung của mẫu lệnh sẽ thay thế phần tử mà lệnh được khai báo
             restrict: 'E',
-            templateUrl: '/app/shared/directive/pagerDirective.html',
+            templateUrl: '/app/shared/directives/pagerDirective.html',
             controller: [
                 '$scope', function ($scope) {
                     $scope.search = function (i) {

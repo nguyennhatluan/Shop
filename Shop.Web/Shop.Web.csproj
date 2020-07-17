@@ -227,8 +227,8 @@
     <Content Include="app\components\products\products.module.js" />
     <Content Include="app\components\product_categories\productCategoryListController.js" />
     <Content Include="app\components\product_categories\productCategoryListView.html" />
-    <Content Include="app\Shared\directive\pagerDirective.html" />
-    <Content Include="app\Shared\directive\pagerDirective.js" />
+    <Content Include="app\Shared\directives\pagerDirective.html" />
+    <Content Include="app\Shared\directives\pagerDirective.js" />
     <Content Include="app\Shared\filter\statusFilter.js" />
     <Content Include="app\Shared\modules\shop.common.js" />
     <Content Include="app\Shared\services\apiService.js" />
