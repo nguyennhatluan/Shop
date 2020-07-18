@@ -21,6 +21,9 @@
             <button class="btn btn-outline-secondary" type="button" id="button-addon2" ng-click="searchKeyWord()">Tìm kiếm</button>
         </div>
     </div>
+    <div class="col-md-6">
+        <button class="btn btn-success" ui-sref="add_product_categories">Thêm mới</button>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -57,7 +60,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="5">
-                                Tổng số bản ghi là {{totalCount}}
+                                <span class="pull-right">Trang {{page+1}} - Tổng số bản ghi là {{totalCount}}</span>
                             </td>
                         </tr>
                     </tfoot>
