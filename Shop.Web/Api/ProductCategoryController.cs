@@ -23,7 +23,7 @@ namespace Shop.Web.Api
         }
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request,string keyword, int page, int pageSize = 2)
+        public HttpResponseMessage GetAll(HttpRequestMessage request,string keyword, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -46,6 +46,22 @@ namespace Shop.Web.Api
                 return response;
             });
         }
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetById(id);
+                var config = new MapperConfiguration(cfg => { cfg.CreateMap<ProductCategory, ProductCategoryViewModel>(); });
+                IMapper imapper = config.CreateMapper();
+                var responseData = imapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+
+                return response;
+            });
+        }
+
         [Route("getallparents")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
@@ -84,7 +100,33 @@ namespace Shop.Web.Api
                     var config = new MapperConfiguration(cfg => { cfg.CreateMap<ProductCategory, ProductCategoryViewModel>(); });
                     IMapper imapper = config.CreateMapper();
                     var responseData = imapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
-                    response = request.CreateResponse(HttpStatusCode.Created);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return response;
+            });
+        }
+
+        [Route("Update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var dbProductCategory = _productCategoryService.GetById(productCategoryVm.ID);
+                    dbProductCategory.UpdateProductCategory(productCategoryVm);
+                    _productCategoryService.Update(dbProductCategory);
+                    _productCategoryService.Save();
+                    var config = new MapperConfiguration(cfg => { cfg.CreateMap<ProductCategory, ProductCategoryViewModel>(); });
+                    IMapper imapper = config.CreateMapper();
+                    var responseData = imapper.Map<ProductCategory, ProductCategoryViewModel>(dbProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return response;
             });

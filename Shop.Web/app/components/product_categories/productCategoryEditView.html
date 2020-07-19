@@ -2,19 +2,19 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Thêm danh mục</h1>
+                <h1>Cập nhật danh mục {{productCategory.Name}}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item" ui-sref="product_categories"><a href="" >Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Thêm danh mục</li>
+                    <li class="breadcrumb-item" ui-sref="product_categories"><a href="">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Cập nhật danh mục</li>
                 </ol>
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </section>
 <section class="content">
-    <form novalidate name="frmAddProductCategory" role="form" ng-submit="AddProductCategory()">
+    <form novalidate name="frmEditProductCategory" role="form" ng-submit="EditProductCategory()">
         <div class="form-group row">
             <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Tên danh mục</label>
             <div class="col-sm-10">
@@ -63,7 +63,7 @@
         <div class="form-group row">
             <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Meta description</label>
             <div class="col-sm-10">
-                <textarea class="form-control" name="metaDescription" ng-model="productCategory.MetaDescription" id="colFormLabel" placeholder="Nhập meta descriotion"></textarea >
+                <textarea class="form-control" name="metaDescription" ng-model="productCategory.MetaDescription" id="colFormLabel" placeholder="Nhập meta descriotion"></textarea>
             </div>
         </div>
         <div class="form-group row">
@@ -94,8 +94,7 @@
             </div>
             <div class="col-sm-2 text-right">
                 <button class="btn btn-danger" ui-sref="product_categories">Hủy</button>
-                <button class="btn btn-success">Lưu</button>
-                <!--bất kỳ button nào mà chưa được gán ui-sref thì khi click sẽ gọi tới sự kiện trong ng-submit-->
+                <button class="btn btn-primary" ng-click="UpdateProductCategory()">Cập nhật</button>
             </div>
         </div>
     </form>
