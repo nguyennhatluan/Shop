@@ -1,10 +1,81 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    <h1>Product List</h1>
-</body>
-</html>
+﻿<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Blank Page</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="row">
+
+    <div class="input-group mb-3 col-md-6">
+        <input type="text" class="form-control" placeholder="Nhập nội dung tìm kiếm" ng-model="keyWord" aria-label="" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" ng-click="searchKeyWord()">Tìm kiếm</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-success" ui-sref="add_products">Thêm mới</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width:30%">Tên sản phẩm</th>
+                            <th style="width:20%">Danh mục sản phẩm</th>
+                            <th style="width:20%">Hình ảnh</th>
+                            <th style="width:10%">Giá</th>
+                            <th style="width:10%">Số lượng</th>
+                            <th style="width:10%">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in products">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Category}}</td>
+                            <td>
+                            </td>
+                            <td>{{item.Price}}</td>
+                            <td>{{item.Warranty}}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary"><i class="fa fa-pencil-ruler"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6">
+                                <span class="pull-right">Trang {{page+1}} - Tổng số bản ghi là {{totalCount}}</span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+      
+        </div>
+        <!-- /.card -->
+    <!-- /.col -->
+</div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card-footer clearfix">
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getProductCagories(page)"></pager-directive>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>

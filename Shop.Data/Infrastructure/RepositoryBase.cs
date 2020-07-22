@@ -14,6 +14,11 @@ namespace Shop.Data.Infrastructure
         private ShopDbContext dataContext;
         private readonly IDbSet<T> dbSet;
 
+        protected RepositoryBase(IDbFactory dbFactory)
+        {
+            DbFactory = dbFactory;
+            dbSet = DbContext.Set<T>(); // lấy ra dbset tương ứng trong class ShopDbContext
+        }
         protected IDbFactory DbFactory
         {
             get;
@@ -26,11 +31,7 @@ namespace Shop.Data.Infrastructure
         }
         #endregion
 
-        protected RepositoryBase(IDbFactory dbFactory)
-        {
-            DbFactory = dbFactory;
-            dbSet = DbContext.Set<T>();
-        }
+        
 
         #region Implementation
         public virtual T Add(T entity)

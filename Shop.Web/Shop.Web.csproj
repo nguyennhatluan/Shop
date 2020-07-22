@@ -190,6 +190,7 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
+    <Compile Include="Api\ProductController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Assets\admin\libs\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="Assets\admin\libs\dist\css\alt\adminlte.plugins.css" />
     <Content Include="Assets\admin\libs\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Assets\admin\libs\dist\css\custom.css" />
     <Content Include="Assets\admin\libs\dist\img\AdminLTELogo.png" />
     <Content Include="Assets\admin\libs\dist\img\avatar.png" />
     <Content Include="Assets\admin\libs\dist\img\avatar04.png" />
