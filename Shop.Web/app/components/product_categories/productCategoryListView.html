@@ -23,6 +23,7 @@
     </div>
     <div class="col-md-6">
         <button class="btn btn-success" ui-sref="add_product_categories">Thêm mới</button>
+        <button class="btn btn-danger" ng-click="deleteMultiple()" disabled id="btnDelete">Xóa</button>
     </div>
 </div>
 <div class="row">
@@ -34,6 +35,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <td><input type="checkbox" ng-click="selectAll()" value="" /></td>
                             <th style="width: 5%">ID</th>
                             <th style="width: 60%">Tên danh mục</th>
                             <th style="width: 15%">Ngày tạo</th>
@@ -43,6 +45,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in productCategories">
+                            <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
                             <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
                             <td>
@@ -51,7 +54,7 @@
                             <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status |statusFilter}}</span></td>
                             <td>
                                 <button class="btn btn-sm btn-primary" ui-sref="edit_product_categories({id:item.ID})"><i class="fa fa-pencil-ruler"></i></button>
-                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteProductCategory(item.ID)"><i class="fa fa-trash"></i></button>
                             </td>
 
                         </tr>
@@ -59,7 +62,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <span class="pull-right">Trang {{page+1}} - Tổng số bản ghi là {{totalCount}}</span>
                             </td>
                         </tr>

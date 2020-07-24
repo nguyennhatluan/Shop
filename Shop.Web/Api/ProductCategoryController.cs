@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace Shop.Web.Api
 {
@@ -129,6 +130,43 @@ namespace Shop.Web.Api
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return response;
+            });
+        }
+        [Route("delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage requestMessage,int id)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                _productCategoryService.Delete(id);
+                _productCategoryService.Save();
+
+                return requestMessage.CreateResponse(HttpStatusCode.Created);
+            });
+        }
+        [Route("deletemulti")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage requestMessage, string checkedProductCategories)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = requestMessage.CreateResponse(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach(var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
+                    _productCategoryService.Save();
+                    response = requestMessage.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
+                }
+                return response;
+
             });
         }
     }
