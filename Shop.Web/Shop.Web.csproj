@@ -292,6 +292,7 @@
     <Content Include="Assets\admin\libs\dist\js\pages\dashboard.js" />
     <Content Include="Assets\admin\libs\dist\js\pages\dashboard2.js" />
     <Content Include="Assets\admin\libs\dist\js\pages\dashboard3.js" />
+    <Content Include="Assets\admin\libs\plugins\angular-ckeditor.js" />
     <Content Include="Assets\admin\libs\plugins\bootbox.js" />
     <Content Include="Assets\admin\libs\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Assets\admin\libs\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
@@ -1490,6 +1491,7 @@
     <Content Include="Assets\admin\libs\plugins\moment\moment-with-locales.js" />
     <Content Include="Assets\admin\libs\plugins\moment\moment-with-locales.min.js" />
     <Content Include="Assets\admin\libs\plugins\moment\moment.min.js" />
+    <Content Include="Assets\admin\libs\plugins\ng-ckeditor.js" />
     <Content Include="Assets\admin\libs\plugins\ngBootbox.js" />
     <Content Include="Assets\admin\libs\plugins\overlayScrollbars\css\OverlayScrollbars.css" />
     <Content Include="Assets\admin\libs\plugins\overlayScrollbars\css\OverlayScrollbars.min.css" />

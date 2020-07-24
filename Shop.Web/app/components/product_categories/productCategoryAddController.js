@@ -6,12 +6,17 @@
             CreatedDate: new Date(),
             Status: true
         }
+        $scope.ckeditorOptions = {
+            languague: 'vi',
+                height : '200px'
+        }
         $scope.AddProductCategory = AddProductCategory;
 
         $scope.GetSeoTitle = function () {
             $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
         }
 
+        
         function AddProductCategory() {
             apiService.post('/api/productcategory/create', $scope.productCategory,
                 function (result) {
