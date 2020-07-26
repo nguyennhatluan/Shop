@@ -88,7 +88,7 @@ namespace Shop.Web.Infrastructure.Extensions
             product.HotFlag = productViewModel.HotFlag;
             product.ViewCount = productViewModel.ViewCount;
             product.Image = productViewModel.Image;
-            
+            product.Tags = productViewModel.Tags;
         }
     }
 }

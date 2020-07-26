@@ -64,6 +64,26 @@ namespace Shop.Web.Api
 
             });
         }
+        //[Route("getall")]
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public HttpResponseMessage GetAll(HttpRequestMessage request)
+        //{
+        //    return CreateHttpResponse(request, () =>
+        //    {
+        //        var listProduct = _productService.GetAll();
+        //        var totalCount = listProduct.Count();
+
+        //        var config = new MapperConfiguration(cfg => { cfg.CreateMap<Product, ProductViewModel>(); });
+        //        IMapper imapper = config.CreateMapper();
+        //        var responseData = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProduct);
+
+        //        HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+
+        //        return response;
+
+        //    });
+        //}
 
         [Route("Create")]
         [HttpPost]

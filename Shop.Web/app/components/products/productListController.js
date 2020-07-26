@@ -1,41 +1,41 @@
-﻿(function (app) {
-    app.controller('productListController', productListController);
-    productListController.$inject['apiService', '$scope', 'notificationService'];
-    function productListController(apiService, $scope, notificationService) {
+﻿//(function (app) {
+//    app.controller('productListController', productListController);
+//    productListController.$inject['apiService', '$scope', 'notificationService'];
+//    function productListController(apiService, $scope, notificationService) {
 
-        $scope.products = [];
-        $scope.page = 0;
-        $scope.pagesCount = 0;
-        $scope.getProducts = getProducts;
-        $scope.keyWord = '';
+//        $scope.products = [];
+//        $scope.page = 0;
+//        $scope.pagesCount = 0;
+//        $scope.getProducts = getProducts;
+//        $scope.keyWord = '';
 
-        function getProducts(page) {
-            page = page || 0;
-            var config = {
-                params: {
-                    keyWord: $scope.keyWord,
-                    page: page,
-                    pageSize: 20
-                }
-            };
-            apiService.get('/api/product/getall', config, function (result) {
-                if (result.data.TotalCount == 0) {
-                    notificationService.displayWarning("Không tìm thấy bản ghi nào");
-                }
-                else {
-                    notificationService.displaySuccess("Đã tìm thấy " + result.data.TotalCount + " bản ghi");
-                    $scope.products = result.data.Items;
-                    $scope.page = result.data.page;
-                    $scope.pagesCount = result.data.TotalPages;
-                    $scope.totalCount = result.data.TotalCount;
-                }
-            }, function (error) {
-                    console.log('Load productcategory failed.');
-            });
-        };
-        $scope.getProducts();
-    }
-})(angular.module('shop.products'));
+//        function getProducts(page) {
+//            page = page || 0;
+//            var config = {
+//                params: {
+//                    keyWord: $scope.keyWord,
+//                    page: page,
+//                    pageSize: 20
+//                }
+//            };
+//            apiService.get('/api/product/getall', config, function (result) {
+//                if (result.data.TotalCount == 0) {
+//                    notificationService.displayWarning("Không tìm thấy bản ghi nào");
+//                }
+//                else {
+//                    notificationService.displaySuccess("Đã tìm thấy " + result.data.TotalCount + " bản ghi");
+//                    $scope.products = result.data.Items;
+//                    $scope.page = result.data.page;
+//                    $scope.pagesCount = result.data.TotalPages;
+//                    $scope.totalCount = result.data.TotalCount;
+//                }
+//            }, function (error) {
+//                    console.log('Load productcategory failed.');
+//            });
+//        };
+//        $scope.getProducts();
+//    }
+//})(angular.module('shop.products'));
 
 //(function (app) {
 //    app.controller('productListController', productListController);
@@ -77,3 +77,45 @@
 
 //    }
 //})(angular.module('shop.products'));
+
+(function (app) {
+
+    app.controller('productListController', productListController);
+    productListController.$inject['$scope','$http','notificationService'];
+
+    function productListController($scope, $http, notificationService) {
+        $scope.page = 0;
+        $scope.pageSize = 20;
+        $scope.keyWord = '';
+        $scope.products = [];
+
+        $scope.getListProducts = getListProducts;
+
+        
+
+        function getListProducts(page) {
+            page = page || 0;
+            $http({
+                url: '/api/product/getall',
+                method: 'GET',
+                params: { page: page, keyWord: $scope.keyWord, pageSize: $scope.pageSize }
+            }).then(function (result) {
+                if (result.data.TotalCount > 0) {
+                    notificationService.displaySuccess('Đã tìm thấy ' + result.data.TotalCount + ' bản ghi');
+                    $scope.products = result.data.Items;
+                    $scope.page = page;
+                    $scope.totalPage = result.data.TotalPages;
+                    $scope.totalCount = result.data.TotalCount;
+                }
+                else {
+                    notificationService.displayError('Không tìm thấy');
+                }
+            }, function (error) {
+                    notificationService.displayError('Error');
+            });
+        }
+
+        $scope.getListProducts();
+    }
+
+})(angular.module('shop.products'));

@@ -6,8 +6,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Blank Page</li>
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Danh sách sản phẩm</li>
                 </ol>
             </div>
         </div>
@@ -22,7 +22,8 @@
         </div>
     </div>
     <div class="col-md-6">
-        <button class="btn btn-success" ui-sref="add_products">Thêm mới</button>
+        <button class="btn btn-success" ui-sref="products_add">Thêm mới</button>
+        <button class="btn btn-danger">Xóa</button>
     </div>
 </div>
 <div class="row">
@@ -64,17 +65,14 @@
                     </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
-      
         </div>
-        <!-- /.card -->
-    <!-- /.col -->
+    </div>
 </div>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="card-footer clearfix">
-                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getProductCagories(page)"></pager-directive>
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getListProducts(page)"></pager-directive>
             </div>
         </div>
         <div class="col-md-4"></div>

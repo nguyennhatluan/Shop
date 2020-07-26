@@ -2,21 +2,22 @@
 
 (function () {
     angular.module('shop.products', ['shop.common']).config(config);
-    config.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function config($stateProvider, $urlRouterProvider) {
+
+    config.$inject['$stateProvider'];
+
+    function config($stateProvider) {
         $stateProvider.state('products', {
             url: '/products',
             templateUrl: '/app/components/products/productListView.html',
-            controller:"productListController"
-        }).state('add_products', {
-            url: '/add_products',
+            controller: 'productListController'
+        }).state('products_add', {
+            url: '/products_add',
             templateUrl: '/app/components/products/productAddView.html',
-            controller: "productAddController"
-        }).state('edit_products', {
-            url: '/edit_products',
+            controller: 'productAddController'
+        }).state('products_edit', {
+            url: '/products_edit',
             templateUrl: '/app/components/products/productEditView.html',
-            controller: "productEditController"
-        })
-
+            controller: 'productEditController'
+        });
     }
 })();
