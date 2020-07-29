@@ -32,31 +32,42 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Danh mục của sản phẩm</label>
+            <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Danh mục sản phẩm</label>
             <div class="col-sm-10">
                 <select name="parentId" required class="form-control" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in categories">
-                    <option value="">Danh mục của sản phẩm</option>
+                    <option value="">Danh mục sản phẩm</option>
                 </select>
                 <input name="parentId" type="hidden" ng-model="product.CategoryID" />
             </div>
         </div>
         <div class="form-group row">
             <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Hình ảnh</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="image" ng-model="product.Image" id="colFormLabel" placeholder="Nhập hình ảnh">
+            <div class="col-sm-2">
+                <!--<input type="text" class="form-control" readonly name="image" ng-model="product.Image" id="colFormLabel" placeholder="Nhập hình ảnh">-->
+                <button type="button" class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
+            </div>
+            <div class="col-sm-8">
+                <img ng-src="{{product.Image}}" style="height:70px; width:50px;"  />
             </div>
         </div>
         <div class="form-group row">
             <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Nhiều hình ảnh</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="moreimage" ng-model="product.MoreImage" id="colFormLabel" placeholder="Nhập hình ảnh">
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-default" ng-click="ChooseMoreImages()">Chọn ảnh</button>
+
+            </div>
+            <div class="col-sm-8">
+                <ul class="list-inline" >
+                    <li><img ng-repeat="item in moreImages" ng-src="{{item}}" style="height:70px; width:50px;" /></li>
+                </ul>
             </div>
         </div>
         <div class="form-group row">
             <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Giá sản phẩm</label>
             <div class="col-sm-10">
-                <input type="number" name="price" ng-model="product.Price" class="form-control" id="colFormLabel" placeholder="Nhập giá sản phẩm">
-                <span class="has-error" ng-show="frmAddProduct.price.$invalid">Chỉ được nhập số</span>
+                <input type="number" name="price" required ng-model="product.Price" class="form-control" id="colFormLabel" placeholder="Nhập giá sản phẩm">
+                <span class="has-error" ng-show="frmAddProduct.price.$invalid">Phải nhập giá sản phẩm</span>
+                
             </div>
         </div>
         <div class="form-group row">
@@ -66,9 +77,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Số lượng</label>
+            <label for="colFormLabel" class="col-sm-2 col-form-label text-right">Bảo hành</label>
             <div class="col-sm-10">
-                <input type="number" name="metaKeyword" ng-model="product.Warranty" class="form-control" id="colFormLabel" placeholder="Nhập số lượng">
+                <input type="number" name="metaKeyword" ng-model="product.Warranty" class="form-control" id="colFormLabel" placeholder="Nhập thời gian bảo hành">
             </div>
         </div>
         <div class="form-group row">

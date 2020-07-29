@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace Shop.Web.Api
 {
@@ -64,6 +65,23 @@ namespace Shop.Web.Api
 
             });
         }
+        [Route("getbyid")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage requestMessage,int id)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var model = _productService.GetById(id);
+                var config = new MapperConfiguration(cfg => { cfg.CreateMap<Product, ProductViewModel>(); });
+                IMapper imapper = config.CreateMapper();
+                var responseData = imapper.Map<Product, ProductViewModel>(model);
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+
+                return response;
+            });
+        }
+
+        
         //[Route("getall")]
         //[HttpGet]
         //[AllowAnonymous]
@@ -110,7 +128,63 @@ namespace Shop.Web.Api
                 return response;
             });
         }
+        [Route("update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage requestMessage, ProductViewModel productViewModel)
+        {
+            HttpResponseMessage response = null;
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                if (!ModelState.IsValid)
+                {
+                    response = requestMessage.CreateResponse(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    var product = _productService.GetById(productViewModel.ID);
+                    product.UpdateProduct(productViewModel);
+                    _productService.Update(product);
+                    _productService.Save();
+                    var config = new MapperConfiguration(cfg => { cfg.CreateMap<Product, ProductViewModel>(); });
+                    IMapper imapper = config.CreateMapper();
+                    var responseData = imapper.Map<Product, ProductViewModel>(product);
+                    response = requestMessage.CreateResponse(HttpStatusCode.Created, responseData);
 
+
+                }
+
+                return response;
+            });
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage requestMessage, int id)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                _productService.Delete(id);
+                _productService.Save();
+
+                return requestMessage.CreateResponse(HttpStatusCode.Created);
+            });
+        }
+        [Route("deletemulti")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage requestMessage, string stringID)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var listId = new JavaScriptSerializer().Deserialize<List<int>>(stringID);
+                foreach(int id in listId)
+                {
+                    _productService.Delete(id);
+                }
+                _productService.Save();
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.Created, listId.Count);
+                return response;
+            });
+        }
         //private IProductCategoryService _productCategoryService;
         //private IProductService _productService;
 

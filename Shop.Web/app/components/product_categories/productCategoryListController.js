@@ -45,7 +45,8 @@
                     }
                 }
                 apiService.del('/api/productCategory/deletemulti', config, function (result) {
-                    notificationService.displaySuccess('Đã xóa '+result.data+' bản ghi');
+                    notificationService.displaySuccess('Đã xóa ' + result.data + ' bản ghi');
+                    console.log($scope.selected);
                     $scope.getProductCategories();
                 },
                     function (error) {
@@ -55,7 +56,8 @@
         }
 
         $scope.$watch("productCategories", function (n, o) {
-            var checked = $filter("filter")(n, { checked: true });
+            console.log(n);
+            var checked = $filter("filter")(n, { checked: true }); // lấy ra danh sách các checked
             if (checked.length) {
                 $scope.selected = checked;
                 $('#btnDelete').removeAttr('disabled');

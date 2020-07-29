@@ -81,17 +81,69 @@
 (function (app) {
 
     app.controller('productListController', productListController);
-    productListController.$inject['$scope','$http','notificationService'];
+    productListController.$inject['$scope', '$http', 'notificationService','$ngBootbox','$state','$filter'];
 
-    function productListController($scope, $http, notificationService) {
+    function productListController($scope, $http, notificationService, $ngBootbox, $state, $filter) {
         $scope.page = 0;
         $scope.pageSize = 20;
         $scope.keyWord = '';
         $scope.products = [];
 
         $scope.getListProducts = getListProducts;
+        $scope.deleteProduct = deleteProduct;
+        $scope.selectAll = selectAll;
+        $scope.deleteMulti = deleteMulti;
 
-        
+        $scope.isAll = false;
+        function selectAll() {
+            if ($scope.isAll === false) {
+                angular.forEach($scope.products, function (item) {
+                    item.checked = true;
+                });
+                $scope.isAll = true;
+            }
+            else {
+                angular.forEach($scope.products, function (item) {
+                    item.checked = false;
+                });
+                $scope.isAll = false;
+            }
+        }
+
+        $scope.$watch('products', function(newValue, oldValue) {
+            console.log(newValue);
+            var checked = $filter('filter')(newValue, { checked: true });
+            if (checked.length) {
+                $('#btnDelete').removeAttr('disabled');
+                $scope.selected = checked;
+            }
+            else {
+                $('#btnDelete').attr('disabled', 'disabled');
+            }
+        }, true);
+
+        function deleteMulti() {
+            $ngBootbox.confirm('Bạn có muốn xóa không').then(function () {
+                var listId = [];
+                angular.forEach($scope.selected, function (item) {
+                    if (item.checked === true) {
+                        listId.push(item.ID);
+                    }
+                });
+
+                $http({
+                    url: '/api/product/deletemulti',
+                    method: 'DELETE',
+                    params: { stringID: JSON.stringify(listId) }
+                }).then(function (result) {
+                    notificationService.displaySuccess('Đã xóa ' + result.data + ' sản phẩm');
+                    
+                    $scope.getListProducts();
+                }, function () {
+                    notificationService.displayError('Không thể xóa sản phẩm');
+                });
+            });
+        }
 
         function getListProducts(page) {
             page = page || 0;
@@ -103,6 +155,7 @@
                 if (result.data.TotalCount > 0) {
                     notificationService.displaySuccess('Đã tìm thấy ' + result.data.TotalCount + ' bản ghi');
                     $scope.products = result.data.Items;
+                   
                     $scope.page = page;
                     $scope.totalPage = result.data.TotalPages;
                     $scope.totalCount = result.data.TotalCount;
@@ -112,6 +165,22 @@
                 }
             }, function (error) {
                     notificationService.displayError('Error');
+            });
+        }
+
+        function deleteProduct(id) {
+            $ngBootbox.confirm('Bạn có muốn xóa không ').then(function () {
+                $http({
+                    url: '/api/product/delete',
+                    method: 'DELETE',
+                    params: {id:id}
+                }).then(function () {
+                    notificationService.displaySuccess('Đã xóa sản phẩm');
+                    $scope.getListProducts();
+
+                }, function () {
+                    notificationService.displayError('Không thể xóa sản phẩm');
+                });
             });
         }
 

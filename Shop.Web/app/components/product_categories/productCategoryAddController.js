@@ -4,7 +4,8 @@
     function productCategoryAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.productCategory = {
             CreatedDate: new Date(),
-            Status: true
+            Status: true,
+            Image:'/UploadedFiles/images/image-post-none.png'
         }
         $scope.ckeditorOptions = {
             languague: 'vi',
@@ -36,7 +37,9 @@
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.productCategory.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.productCategory.Image = fileUrl;
+                });
             }
             finder.popup();
         }

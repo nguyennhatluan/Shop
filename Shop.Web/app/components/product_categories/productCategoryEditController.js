@@ -4,7 +4,8 @@
     function productCategoryEditController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
         $scope.productCategory = {
             CreatedDate: new Date(),
-            Status: true
+            Status: true,
+            Image:'/UploadedFiles/images/image-post-none.png'
         }
         $scope.UpdateProductCategory = UpdateProductCategory;
         
@@ -34,6 +35,17 @@
                 notificationService.displayError(error.data);
             });
         }
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.productCategory.Image = fileUrl;
+                });
+            }
+            finder.popup();
+        }
+
         loadParentCategory();
         loadCategoryDetail();
     }
