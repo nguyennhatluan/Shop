@@ -223,6 +223,9 @@
     <Content Include="app\app.js" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\components\home\rootController.js" />
+    <Content Include="app\components\login\loginController.js" />
+    <Content Include="app\components\login\loginView.html" />
     <Content Include="app\components\products\productAddController.js" />
     <Content Include="app\components\products\productAddView.html" />
     <Content Include="app\components\products\productEditController.js" />
@@ -243,6 +246,7 @@
     <Content Include="app\Shared\services\apiService.js" />
     <Content Include="app\Shared\services\commonService.js" />
     <Content Include="app\Shared\services\notificationService.js" />
+    <Content Include="app\Shared\Views\baseView.html" />
     <Content Include="Assets\admin\libs\dist\css\adminlte.css" />
     <Content Include="Assets\admin\libs\dist\css\adminlte.min.css" />
     <Content Include="Assets\admin\libs\dist\css\alt\adminlte.components.css" />
