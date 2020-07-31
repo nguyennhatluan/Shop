@@ -12,19 +12,21 @@ namespace Shop.Web.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        [ChildActionOnly]
+        public ActionResult Header()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return PartialView();
+        }
+        [ChildActionOnly]
+        public ActionResult Category()
+        {
+            return PartialView();
         }
 
-        public ActionResult Contact()
+        [ChildActionOnly]
+        public ActionResult Footer()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return PartialView();
         }
     }
 }
