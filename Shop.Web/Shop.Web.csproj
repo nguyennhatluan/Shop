@@ -192,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
@@ -244,7 +245,10 @@
     <Content Include="app\Shared\filter\statusFilter.js" />
     <Content Include="app\Shared\modules\shop.common.js" />
     <Content Include="app\Shared\services\apiService.js" />
+    <Content Include="app\Shared\services\authData.js" />
+    <Content Include="app\Shared\services\authenticationService.js" />
     <Content Include="app\Shared\services\commonService.js" />
+    <Content Include="app\Shared\services\loginService.js" />
     <Content Include="app\Shared\services\notificationService.js" />
     <Content Include="app\Shared\Views\baseView.html" />
     <Content Include="Assets\admin\libs\dist\css\adminlte.css" />
@@ -301,6 +305,7 @@
     <Content Include="Assets\admin\libs\dist\js\pages\dashboard2.js" />
     <Content Include="Assets\admin\libs\dist\js\pages\dashboard3.js" />
     <Content Include="Assets\admin\libs\plugins\angular-ckeditor.js" />
+    <Content Include="Assets\admin\libs\plugins\angular-local-storage.js" />
     <Content Include="Assets\admin\libs\plugins\bootbox.js" />
     <Content Include="Assets\admin\libs\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Assets\admin\libs\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
@@ -2013,6 +2018,8 @@
     <Content Include="Assets\admin\libs\plugins\jsgrid\jsgrid.min.js" />
     <Content Include="Assets\admin\libs\plugins\jszip\jszip.js" />
     <Content Include="Assets\admin\libs\plugins\jszip\jszip.min.js" />
+    <Content Include="Assets\admin\libs\plugins\loading-bar.css" />
+    <Content Include="Assets\admin\libs\plugins\loading-bar.js" />
     <Content Include="Assets\admin\libs\plugins\moment\locales.js" />
     <Content Include="Assets\admin\libs\plugins\moment\locales.min.js" />
     <Content Include="Assets\admin\libs\plugins\moment\locale\af.js" />
