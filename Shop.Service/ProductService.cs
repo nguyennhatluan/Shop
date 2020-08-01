@@ -3,6 +3,7 @@ using Shop.Data.Infrastructure;
 using Shop.Data.Repositories;
 using Shop.Model.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Shop.Service
@@ -17,6 +18,8 @@ namespace Shop.Service
 
         IEnumerable<Product> GetAll();
         IEnumerable<Product> GetAll(string keyword);
+        IEnumerable<Product> GetLatestProduct(int top);
+        IEnumerable<Product> GetHotProduct(int top);
         IEnumerable<Product> GetAll(string[] includes, string keyWord);
         Product GetById(int id);
         void Save();
@@ -122,6 +125,16 @@ namespace Shop.Service
         public Product GetById(int id)
         {
             return _productRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetLatestProduct(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public void Save()

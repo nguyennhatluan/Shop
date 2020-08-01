@@ -92,6 +92,14 @@
     <Compile Include="Migrations\202007310221277_addUser.designer.cs">
       <DependentUpon>202007310221277_addUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008010354223_addContentToSlide.cs" />
+    <Compile Include="Migrations\202008010354223_addContentToSlide.designer.cs">
+      <DependentUpon>202008010354223_addContentToSlide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008011142433_addStatusToProduct.cs" />
+    <Compile Include="Migrations\202008011142433_addStatusToProduct.designer.cs">
+      <DependentUpon>202008011142433_addStatusToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -152,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007310221277_addUser.resx">
       <DependentUpon>202007310221277_addUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008010354223_addContentToSlide.resx">
+      <DependentUpon>202008010354223_addContentToSlide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008011142433_addStatusToProduct.resx">
+      <DependentUpon>202008011142433_addStatusToProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

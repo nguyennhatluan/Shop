@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Permissions;
 using System.Web;
 
 namespace Shop.Web.Models
@@ -32,6 +33,9 @@ namespace Shop.Web.Models
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
         public string Tags { set; get; }
+
+        public bool Status { set; get; }
+        public DateTime CreatedDate { set; get; }
         public virtual ProductCategoryViewModel PoductCategoryViewModel { set; get; }
     }
 }

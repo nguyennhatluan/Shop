@@ -20,6 +20,8 @@ namespace Shop.Web.Mappings
                 cfg.CreateMap<Post, PostViewModel>();
                 cfg.CreateMap<PostTag, PostTagViewModel>();
                 cfg.CreateMap<Tag, TagViewModel>();
+                cfg.CreateMap<Product, ProductViewModel>();
+                cfg.CreateMap<Slide, SlideViewModel>();
             });
 
             IMapper mapper = config.CreateMapper();

@@ -41,6 +41,9 @@ namespace Shop.Model.Models
 
         public string Tags { set; get; }
 
+        public bool Status { set; get; }
+        public DateTime CreatedDate { set; get; }
+
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
     }
