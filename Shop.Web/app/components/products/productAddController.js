@@ -37,7 +37,8 @@
         $scope.getSeoTitle = getSeoTitle;
         $scope.product = {
             Status: true,
-            Image: '/UploadedFiles/images/image-post-none.png'
+            Image: '/UploadedFiles/images/image-post-none.png',
+            
         }
         $scope.moreImages = [];
 

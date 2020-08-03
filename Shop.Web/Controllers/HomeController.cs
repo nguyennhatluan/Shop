@@ -35,8 +35,8 @@ namespace Shop.Web.Controllers
             config = new MapperConfiguration(cfg => { cfg.CreateMap<Product, ProductViewModel>(); });
             imapper = config.CreateMapper();
             var listProductViewModel = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProduct);
-            var listLatestProduct = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_productService.GetLatestProduct(6));
-            var listHotProduct = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_productService.GetHotProduct(6));
+            var listLatestProduct = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_productService.GetLatestProduct(3));
+            var listHotProduct = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_productService.GetHotProduct(3));
             var homeViewModel = new HomeViewModel()
             {
                 Slides = listSlideViewModel,

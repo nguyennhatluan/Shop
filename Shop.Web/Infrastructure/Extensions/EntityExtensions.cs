@@ -89,6 +89,7 @@ namespace Shop.Web.Infrastructure.Extensions
             product.ViewCount = productViewModel.ViewCount;
             product.Image = productViewModel.Image;
             product.Tags = productViewModel.Tags;
+            product.Status = productViewModel.Status;
         }
     }
 }

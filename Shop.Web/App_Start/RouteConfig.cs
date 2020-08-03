@@ -12,11 +12,33 @@ namespace Shop.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                name: "Login",
+                url: "dang-nhap",
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
 
+            );
+            
+            routes.MapRoute(
+                name: "Product",
+                url: "product/{alias}/{id}",
+                defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Product Category",
+                url: "product-category/{alias}/{id}",
+                //day-chuyen.pc-16.html
+                defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
             );
         }
     }

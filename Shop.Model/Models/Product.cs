@@ -10,8 +10,9 @@ using System.Xml.Linq;
 namespace Shop.Model.Models
 {
     [Table("Products")]
-    public class Product { 
-    
+    public class Product {
+
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
@@ -42,7 +43,7 @@ namespace Shop.Model.Models
         public string Tags { set; get; }
 
         public bool Status { set; get; }
-        public DateTime CreatedDate { set; get; }
+        public DateTime CreatedDate { set; get; } = DateTime.Now;
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }

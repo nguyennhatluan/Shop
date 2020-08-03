@@ -45,8 +45,9 @@
     <div class="product-left">
         @foreach (var product in Model.LatestProducts)
         {
-            <div class="col-md-4 chain-grid">
-                <a href="single.html"><img class="img-responsive chain" src="/Assets/client/images/ch.jpg" alt=" " /></a>
+            var url ="/product/"+ product.Alias + "/" + product.ID ;
+            <div class="col-md-4 chain-grid grid-top-chain">
+                <a href="@url"><img class="img-responsive chain" src="@product.Image" alt=" " /></a>
                 <span class="star"> </span>
                 <div class="grid-chain-bottom">
                     <h6><a href="single.html">@product.Name</a></h6>
@@ -67,7 +68,7 @@
                                 <label for="rating-input-1-1" class="rating-star"> </label>
                             </span>
                         </div>
-                        <a class="now-get get-cart" href="#">Thêm vào giỏ</a>
+                        <a class="now-get get-cart" href="#">Mua hàng</a>
                         <div class="clearfix"> </div>
                     </div>
                 </div>
@@ -85,8 +86,9 @@
     <div class="product-left">
         @foreach (var product in Model.LatestProducts)
         {
-            <div class="col-md-4 chain-grid">
-                <a href="single.html"><img class="img-responsive chain" src="/Assets/client/images/ch.jpg" alt=" " /></a>
+            var url = "/product/" + product.Alias + "/" + product.ID;
+            <div class="col-md-4 chain-grid grid-top-chain">
+                <a href="@url"><img class="img-responsive chain"  src="@product.Image" alt=" " /></a>
                 <span class="star"> </span>
                 <div class="grid-chain-bottom">
                     <h6><a href="single.html">@product.Name</a></h6>
@@ -107,7 +109,7 @@
                                 <label for="rating-input-1-1" class="rating-star"> </label>
                             </span>
                         </div>
-                        <a class="now-get get-cart" href="#">Thêm vào giỏ</a>
+                        <a class="now-get get-cart" href="#">Mua hàng</a>
                         <div class="clearfix"> </div>
                     </div>
                 </div>

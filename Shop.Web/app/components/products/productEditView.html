@@ -21,7 +21,7 @@
                 <input type="text" name="name" class="form-control" required ng-change="getSeoTitle()" ng-model="product.Name" placeholder="Nhập tên sản phẩm" id="name">
                 <span class="has-error" ng-show="frmEditProduct.name.$invalid">Phải nhập tên sản phẩm</span>
             </div>
-            
+
         </div>
         <div class="form-group row">
             <label for="alias" class="col-md-2 text-right col-form-label">Tiêu đề SEO</label>
@@ -60,7 +60,7 @@
                     </li>
                 </ul>
 
-                
+
             </div>
         </div>
         <div class="form-group row">
@@ -94,7 +94,7 @@
             <div class="col-md-10">
                 <textarea class="form-control" ckeditor="ckeditorOptions" ng-model="product.Content"></textarea>
             </div>
-            
+
         </div>
         <div class="form-group row">
             <label for="tags" class="col-md-2 text-right col-form-label">Tags</label>
@@ -106,7 +106,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-10 form-check">
                 <label class="form-check-label col-form-label">
-                    <input class="form-check-input" ng-model="product.HomeFlag" type="checkbox"> Hiển thị ở trang chủ
+                    <input class="form-check-input" ng-model="product.Status" type="checkbox" ng-checked="product.Status"> Trạng thái
                 </label>
             </div>
         </div>
@@ -114,10 +114,18 @@
             <div class="col-md-2"></div>
             <div class="col-md-10 form-check">
                 <label class="form-check-label col-form-label">
-                    <input class="form-check-input" ng-model="product.HotFlag" type="checkbox"> Sản phẩm nổi bật
+                    <input class="form-check-input" ng-model="product.HomeFlag" type="checkbox" ng-checked="product.HomeFlag"> Hiển thị ở trang chủ
                 </label>
             </div>
-            
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10 form-check">
+                <label class="form-check-label col-form-label">
+                    <input class="form-check-input" ng-model="product.HotFlag" type="checkbox" ng-checked="product.HotFlag"> Sản phẩm nổi bật
+                </label>
+            </div>
+
         </div>
         <div class="row">
             <div class="col-md-10"></div>

@@ -162,6 +162,8 @@
                 }
                 else {
                     notificationService.displayError('Không tìm thấy');
+                    $scope.products = result.data.Items;
+                    $scope.totalCount = result.data.TotalCount;
                 }
             }, function (error) {
                     notificationService.displayError('Error');
