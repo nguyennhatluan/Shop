@@ -117,6 +117,7 @@ namespace Shop.Web.Api
                 else
                 {
                     var newProduct = new Product();
+                    
                     newProduct.UpdateProduct(productViewModel);
                     _productService.Add(newProduct);
                     _productService.Save();

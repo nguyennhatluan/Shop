@@ -21,9 +21,10 @@ namespace Shop.Service
         IEnumerable<Product> GetLatestProduct(int top);
         IEnumerable<Product> GetHotProduct(int top);
         IEnumerable<Product> GetAll(string[] includes, string keyWord);
-        IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow, string sort);
         Product GetById(int id);
         void Save();
+        IEnumerable<string> GetListProductByName(string name);
     }
 
     public class ProductService : IProductService
@@ -138,11 +139,35 @@ namespace Shop.Service
             return _productRepository.GetMulti(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
-        public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow,string sort)
         {
             var query = _productRepository.GetMulti(x => x.Status == true && x.CategoryID == categoryId);
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderBy(x => x.ViewCount);
+                    break;
+                case "discount":
+                    query = query.OrderBy(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                
+                case "new":
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return _productRepository.GetMulti(x => x.Status == true && x.Name.Contains(name)).Select(y=>y.Name);
         }
 
         public void Save()

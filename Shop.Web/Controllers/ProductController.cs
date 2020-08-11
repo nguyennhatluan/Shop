@@ -24,17 +24,17 @@ namespace Shop.Web.Controllers
         }
 
         // GET: Product
-        public ActionResult Detail(int id)
-        {
-            return View();
-        }
+        //public ActionResult Detail(int id)
+        //{
+        //    return View();
+        //}
 
-        public ActionResult Category(int id,int page=1)
+        public ActionResult Category(int id,int page=1, string sort="")
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
             int maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
             int totalRow = 0;
-            var listProduct = _productService.GetListProductByCategoryIdPaging(id, page, pageSize, out totalRow);
+            var listProduct = _productService.GetListProductByCategoryIdPaging(id, page, pageSize, out totalRow,sort);
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<Product, ProductViewModel>(); });
             var imapper = config.CreateMapper();
             var listProductViewModel = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProduct);
@@ -52,6 +52,17 @@ namespace Shop.Web.Controllers
                 MaxPage = maxPage
             };
             return View(productPaginationSet);
+        }
+        [HttpGet]
+        public JsonResult GetListProductByName(string keyword)
+        {
+            var model = _productService.GetListProductByName(keyword);
+            
+
+            return Json(new
+            {
+                data = model
+            }, JsonRequestBehavior.AllowGet) ;
         }
     }
 }

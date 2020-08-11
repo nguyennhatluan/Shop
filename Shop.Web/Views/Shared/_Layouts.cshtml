@@ -14,6 +14,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="/Assets/client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!--theme-style-->
     <link href="/Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+
+    <link href="~/Assets/admin/libs/plugins/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -28,10 +31,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     @{ Html.RenderAction("Header", "Home");}
     <!---->
     <div class="container">
-        
-            @RenderBody()
-            @*@RenderSection("homeProducts", required: false)*@
-       
+
+        @RenderBody()
+        @*@RenderSection("homeProducts", required: false)*@
+
         @{ Html.RenderAction("Category", "Home");}
 
 
@@ -41,12 +44,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="clearfix">
         </div>
     </div>
-        
-        @*<div class="clearfix"> </div>
+
+    @*<div class="clearfix"> </div>
         </div>*@
     @*</div>*@
     <!---->
     @{ Html.RenderAction("Footer", "Home");}
     @*<div class="clearfix"> </div>*@
+
+    <script src="/Assets/client/js/jquery.min.js"></script>
+    <script src="~/Assets/admin/libs/plugins/jquery-ui/jquery-ui.js"></script>
+    @RenderSection("productCategoryJs", required:false)
+    @*<script src="~/Assets/client/js/common.js"></script>*@
 </body>
 </html>

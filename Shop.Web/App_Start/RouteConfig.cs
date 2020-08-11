@@ -20,10 +20,15 @@ namespace Shop.Web
                 namespaces: new string[] { "Shop.Web.Controllers" }
 
             );
-            
+            routes.MapRoute(
+                name: "ProductByName",
+                url: "Product/GetListProductByName/{keyword}",
+                defaults: new { controller = "Product", action = "GetListProductByName", keyword = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
+            );
             routes.MapRoute(
                 name: "Product",
-                url: "product/{alias}/{id}",
+                url: "product-detail/{alias}/{id}",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
                 namespaces: new string[] { "Shop.Web.Controllers" }
             );

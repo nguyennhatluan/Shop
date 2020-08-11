@@ -11,10 +11,10 @@
             <a href="#"><h4>@category.Name - <span>@Model.TotalCount sản phẩm</span> </h4></a>
             <ul class="w_nav">
                 <li>Sắp xếp : </li>
-                <li><a class="active" href="#">Phổ biến</a></li> |
-                <li><a href="#">Mới </a></li> |
-                <li><a href="#">Giảm giá</a></li> |
-                <li><a href="#">Giá: Cao Thấp </a></li>
+                <li><a class="active" href="?page=@Model.Page&sort=popular">Phổ biến</a></li> |
+                <li><a href="?page=@Model.Page&sort=new">Mới </a></li> |
+                <li><a href="?page=@Model.Page&sort=discount">Giảm giá</a></li> |
+                <li><a href="?page=@Model.Page&sort=price">Giá: Cao Thấp </a></li>
                 <div class="clearfix"> </div>
             </ul>
             <div class="clearfix"> </div>
@@ -27,7 +27,7 @@
 
             <div class="product-grid">
                 <div class="content_box">
-                    <a href="/product/@item.Alias/@item.ID">
+                    <a href="/product-detail/@item.Alias/@item.ID">
                         <div class="left-grid-view grid-view-left">
                             <img src="@item.Image" class="img-responsive watch-right" alt="" />
                             <div class="mask">
