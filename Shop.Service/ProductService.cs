@@ -18,6 +18,7 @@ namespace Shop.Service
 
         IEnumerable<Product> GetAll();
         IEnumerable<Product> GetAll(string keyword);
+        IEnumerable<Product> LoadData(int pageIndex, int pageSize, string keyword);
         IEnumerable<Product> GetLatestProduct(int top);
         IEnumerable<Product> GetHotProduct(int top);
         IEnumerable<Product> GetAll(string[] includes, string keyWord);
@@ -168,6 +169,20 @@ namespace Shop.Service
         public IEnumerable<string> GetListProductByName(string name)
         {
             return _productRepository.GetMulti(x => x.Status == true && x.Name.Contains(name)).Select(y=>y.Name);
+        }
+
+        public IEnumerable<Product> LoadData(int pageIndex, int pageSize, string keyword)
+        {
+            IEnumerable<Product> model = null;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                model = _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            }
+            else
+            {
+                model = _productRepository.GetAll();
+            }
+            return model.Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
 
         public void Save()

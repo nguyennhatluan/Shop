@@ -11,7 +11,17 @@
             language: 'vi',
             height:'200px'
         }
+        $scope.moreImages = [];
 
+        $scope.ChooseMoreImages = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+            }
+            finder.popup();
+        }
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Shop.Web.Controllers
 {
@@ -35,12 +36,15 @@ namespace Shop.Web.Controllers
             int maxPage = int.Parse(ConfigHelper.GetByKey("MaxPage"));
             int totalRow = 0;
             var listProduct = _productService.GetListProductByCategoryIdPaging(id, page, pageSize, out totalRow,sort);
+
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<Product, ProductViewModel>(); });
             var imapper = config.CreateMapper();
             var listProductViewModel = imapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProduct);
+
             var productCategory = _productCategoryService.GetById(id);
             config = new MapperConfiguration(cfg => { cfg.CreateMap<ProductCategory, ProductCategoryViewModel>(); });
             imapper = config.CreateMapper();
+
             var productCategoryViewModel = imapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
             ViewBag.productCategory = productCategoryViewModel;
             PaginationSet<ProductViewModel> productPaginationSet = new PaginationSet<ProductViewModel>()
@@ -63,6 +67,31 @@ namespace Shop.Web.Controllers
             {
                 data = model
             }, JsonRequestBehavior.AllowGet) ;
+        }
+        [HttpPost]
+        public JsonResult LoadData(int pageIndex,int pageSize,string strSearch)
+        {
+            var model = _productService.LoadData(pageIndex, pageSize, strSearch);
+            int count = model.Count();
+            return Json(new
+            {
+                data = model,
+                count=count
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var model = _productService.GetById(id);
+
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Product, ProductViewModel>(); });
+            var imapper = config.CreateMapper();
+            var listProductViewModel = imapper.Map<Product, ProductViewModel>(model);
+
+            List<string> listImages = new JavaScriptSerializer().Deserialize<List<string>>(listProductViewModel.MoreImage);
+            ViewBag.MoreImages = listImages;
+
+            return View(listProductViewModel);
         }
     }
 }
