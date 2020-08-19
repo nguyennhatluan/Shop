@@ -27,6 +27,12 @@ namespace Shop.Web
                 namespaces: new string[] { "Shop.Web.Controllers" }
             );
             routes.MapRoute(
+                name: "ProductByTag",
+                url: "Product/Tag/{tagId}",
+                defaults: new { controller = "Product", action = "GetListProductByTag", tagId = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Product",
                 url: "product-detail/{alias}/{id}",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },

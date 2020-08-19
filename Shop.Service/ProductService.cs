@@ -26,6 +26,11 @@ namespace Shop.Service
         Product GetById(int id);
         void Save();
         IEnumerable<string> GetListProductByName(string name);
+
+        IEnumerable<Tag> GetListTagByProductId(int id);
+        Tag GetTag(string tagId);
+        void IncreaseView(int id);
+        IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow);
     }
 
     public class ProductService : IProductService
@@ -171,6 +176,34 @@ namespace Shop.Service
             return _productRepository.GetMulti(x => x.Status == true && x.Name.Contains(name)).Select(y=>y.Name);
         }
 
+        public IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow)
+        {
+           return _productRepository.GetListProductByTag(tagId, page, pageSize, out totalRow);
+        }
+
+        public IEnumerable<Tag> GetListTagByProductId(int id)
+        {
+            return _productRepository.GetListTagByProductID(id);
+        }
+
+        public Tag GetTag(string tagId)
+        {
+            return _tagRepository.GetSingleByCondition(x => x.ID.Equals(tagId));
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product = _productRepository.GetSingleById(id);
+            if (product.ViewCount.HasValue)
+            {
+                product.ViewCount += 1;
+            }
+            else
+            {
+                product.ViewCount = 1;
+            }
+        }
+
         public IEnumerable<Product> LoadData(int pageIndex, int pageSize, string keyword)
         {
             IEnumerable<Product> model = null;
@@ -219,6 +252,7 @@ namespace Shop.Service
                     }
                 }
             }
+            _unitOfWork.Commit();
         }
     }
 }
