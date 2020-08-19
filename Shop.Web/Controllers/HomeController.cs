@@ -23,7 +23,7 @@ namespace Shop.Web.Controllers
             _productService = productService;
             _slideService = slideService;
         }
-
+        [OutputCache(Duration =60,Location =System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var listSlide = _slideService.GetAll();
@@ -52,6 +52,7 @@ namespace Shop.Web.Controllers
             return PartialView();
         }
         [ChildActionOnly]
+        [OutputCache(Duration =3600)]
         public ActionResult Category()
         {
             var listProductCategories = _productCategoryService.GetAll();
@@ -65,6 +66,7 @@ namespace Shop.Web.Controllers
         
 
         [ChildActionOnly]
+        [OutputCache(Duration =3600)]
         public ActionResult Footer()
         {
             return PartialView();
