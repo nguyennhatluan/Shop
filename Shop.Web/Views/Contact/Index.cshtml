@@ -1,0 +1,68 @@
+﻿@model Shop.Web.Models.ContactAndFeedBackViewModel
+@using BotDetect.Web.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+
+
+<div class="main">
+   
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+    <input type="hidden" id="hidAddress" value="@Model.ContactDetailViewModel.Name<br />Điện thoại:@Model.ContactDetailViewModel.Phone <br>Địa chỉ: @Model.ContactDetailViewModel.Address" />
+    <input type="hidden" id="hidLat" value="@Model.ContactDetailViewModel.Lat" />
+    <input type="hidden" id="hidLng" value="@Model.ContactDetailViewModel.Lng" />
+    <input type="hidden" id="hidName" value="@Model.ContactDetailViewModel.Name" />
+    <div class="reservation_top">
+        <div class=" contact_right">
+            <h3>Thông tin liên hệ</h3>
+            <div class="contact-form">
+                @if (ViewBag.Status == true)
+                {
+                    <div class="alert alert-success" role="alert">
+                        <strong>Chúc mừng bạn! </strong> gửi phản hồi thành công.
+                        <br />Chúng tôi sẽ liên hệ lại sớm nhất có thể.
+                    </div>
+                }
+                @using (Html.BeginForm("SendFeedBack", "Contact", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "error" });
+                    @Html.TextBoxFor(model => model.FeedBackViewModel.Name, new { placeholder = "Name", @class = "textbox"});
+                    @Html.TextBoxFor(model => model.FeedBackViewModel.Email, new { placeholder = "Email", @class = "textbox" });
+                    @Html.TextAreaFor(model => model.FeedBackViewModel.Message);
+
+                    MvcCaptcha contactCaptcha = new MvcCaptcha("contactCaptcha");
+                    @Html.Captcha(contactCaptcha)
+                    @Html.TextBox("CaptchaCode")
+                    <input type="submit" value="Gửi đi">
+                    <div class="clearfix"> </div>
+                }
+
+                @*<form method="post" action="/Contact/SendFeedBack">
+            <input type="text" class="textbox" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+            <input type="text" class="textbox" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+            <textarea value="Message" onfocus="this.value= '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+            <input type="submit" value="Send">
+            <div class="clearfix"> </div>
+        </form>*@
+                <address class="address">
+                    <h4>@Model.ContactDetailViewModel.Address</h4>
+                    <dl>
+                        <dt> </dt>
+                        <dd>Điện thoại:<span>@Model.ContactDetailViewModel.Phone</span></dd>
+
+                        <dd>E-mail:&nbsp; <a href="@Model.ContactDetailViewModel.Email">@Model.ContactDetailViewModel.Email</a></dd>
+                    </dl>
+                </address>
+                <div id="map" style="height:400px">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section contactJs{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvIUYcHafnq4dVHVUqVXSeyJ1jXD0GjoE&callback=initMap"
+            type="text/javascript"></script>
+    <script src="~/Assets/client/js/Contact/contact.js"></script>
+}

@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactDetailService.cs" />
     <Compile Include="ErrorService.cs" />
+    <Compile Include="FeedBackService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="PostCategoryService.cs" />
     <Compile Include="PostService.cs" />

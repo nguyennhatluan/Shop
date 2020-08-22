@@ -91,5 +91,12 @@ namespace Shop.Web.Infrastructure.Extensions
             product.Tags = productViewModel.Tags;
             product.Status = productViewModel.Status;
         }
+        public static void UpdateFeedBack(this FeedBack feedBack, FeedBackViewModel feedBackViewModel)
+        {
+            feedBack.Name = feedBackViewModel.Name;
+            feedBack.Message = feedBackViewModel.Message;
+            feedBack.Email = feedBackViewModel.Email;
+            
+        }
     }
 }

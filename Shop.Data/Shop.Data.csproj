@@ -104,9 +104,23 @@
     <Compile Include="Migrations\202008011741188_addDefaultDate.designer.cs">
       <DependentUpon>202008011741188_addDefaultDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008200452312_addContactDetail.cs" />
+    <Compile Include="Migrations\202008200452312_addContactDetail.designer.cs">
+      <DependentUpon>202008200452312_addContactDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008211505392_addContactDetail1.cs" />
+    <Compile Include="Migrations\202008211505392_addContactDetail1.designer.cs">
+      <DependentUpon>202008211505392_addContactDetail1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008211735550_addFeedback.cs" />
+    <Compile Include="Migrations\202008211735550_addFeedback.designer.cs">
+      <DependentUpon>202008211735550_addFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FeedBackRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
@@ -173,6 +187,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008011741188_addDefaultDate.resx">
       <DependentUpon>202008011741188_addDefaultDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008200452312_addContactDetail.resx">
+      <DependentUpon>202008200452312_addContactDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008211505392_addContactDetail1.resx">
+      <DependentUpon>202008211505392_addContactDetail1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008211735550_addFeedback.resx">
+      <DependentUpon>202008211735550_addFeedback.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

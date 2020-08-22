@@ -12,11 +12,21 @@ namespace Shop.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+            // BotDetect requests must not be routed
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+
+
             routes.MapRoute(
                 name: "Login",
                 url: "dang-nhap",
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
+
+            );
+            routes.MapRoute(
+                name: "Register",
+                url: "dang-ky",
+                defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
                 namespaces: new string[] { "Shop.Web.Controllers" }
 
             );

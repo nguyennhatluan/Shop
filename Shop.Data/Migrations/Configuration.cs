@@ -50,7 +50,25 @@
             //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
             CreateProductCategorySample(context);
             CreateSlide(context);
+            CreateContactDetail(context);
 
+        }
+        private void CreateContactDetail(Shop.Data.ShopDbContext context)
+        {
+            if (context.ContatctDetails.Count() == 0)
+            {
+                ContactDetail contactDetail = new ContactDetail()
+                {
+                    Address = "450 Lê Văn Việt,P.Tăng Nhơn Phú A, Q.9, TP.HCM",
+                    Name="Nguyễn Nhất Luân",
+                    Phone = "0123456789",
+                    Email = "shopbanhang@gmail.com",
+                    Lat= 10.845470,
+                    Lng = 106.794670
+                };
+                context.ContatctDetails.Add(contactDetail);
+                context.SaveChanges();
+            }
         }
         private void CreateProductCategorySample(Shop.Data.ShopDbContext context)
         {

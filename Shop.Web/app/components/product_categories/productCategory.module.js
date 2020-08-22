@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../scripts/plugins/angular.js" />
 (function () {
     angular.module('shop.product_categories', ['shop.common']).config(config);
-
+    
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function config($stateProvider, $urlRouterProvider) {
