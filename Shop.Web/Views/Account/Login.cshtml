@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+@model Shop.Web.Models.LoginViewModel
+    <style>
+        .login-right input[type="password"] {
+            border: 1px solid #DDDBDB;
+            outline-color: #fb4d01;
+            width: 96%;
+            font-size: 0.9em;
+            padding: 10px;
+        }
+        .error{
+            color:red;
+        }
+    </style>
+    <div class="account_grid">
+        
+        <div class=" login-right">
+            <h3>Đã có tài khoản</h3>
+            <p>Nếu bạn đã có tài khoản, vui lòng đăng nhập.</p>
+            @Html.ValidationSummary(false, "", new { @class = "error" })
+            @using (Html.BeginForm("Login", "Account",new { returnUrl = ViewBag.ReturnUrl}, FormMethod.Post))
+            {
+                <div>
+                    <span>Tài khoản<label>*</label></span>
+                    @Html.TextBoxFor(model => model.UserName)
+                </div>
+                <div>
+                    <span>Mật khẩu<label>*</label></span>
+                    @Html.PasswordFor(model => model.Password)
+                </div>
+                <div>
+                    @Html.CheckBoxFor(model => model.RememberMe)
+                    Nhớ mật khẩu?
+                </div>
+                <a class="forgot" href="#">Quên mật khẩu?</a>
+                <input type="submit" value="Đăng nhập">
+            }
+            
+        </div>
+        <div class=" login-left">
+            <h3>Chưa có tài khoản</h3>
+            <p>Nếu bạn chưa có tài khoản, vui lòng đăng ký tài khoản để mua hàng.</p>
+            <a class="acount-btn" href="/dang-ky">Đăng ký</a>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+

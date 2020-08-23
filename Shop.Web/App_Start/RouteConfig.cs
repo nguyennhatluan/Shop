@@ -31,6 +31,13 @@ namespace Shop.Web
 
             );
             routes.MapRoute(
+                name: "Logout",
+                url: "logout",
+                defaults: new { controller = "Account", action = "Logout", id = UrlParameter.Optional },
+                namespaces: new string[] { "Shop.Web.Controllers" }
+
+            );
+            routes.MapRoute(
                 name: "ProductByName",
                 url: "Product/GetListProductByName/{keyword}",
                 defaults: new { controller = "Product", action = "GetListProductByName", keyword = UrlParameter.Optional },

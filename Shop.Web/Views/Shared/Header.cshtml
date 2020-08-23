@@ -1,4 +1,5 @@
-﻿<div class="header">
+﻿@using Microsoft.AspNet.Identity;
+<div class="header">
     <div class="top-header">
         <div class="container">
             <div class="top-header-left">
@@ -14,27 +15,27 @@
                     <li><a href="#"><label> </label></a></li>
                     <li><a href="/Contact/Index"><span class="live">Liên hệ</span></a></li>
                 </ul>
-                
+
                 <div class="clearfix"> </div>
             </div>
             <div class="top-header-right">
-               
-                @*<div class="down-top">
-            <select class="in-drop">
-                <option value="English" class="in-of">English</option>
-                <option value="Japanese" class="in-of">Japanese</option>
-                <option value="French" class="in-of">French</option>
-                <option value="German" class="in-of">German</option>
-            </select>
-        </div>
-        <div class="down-top top-down">
-            <select class="in-drop">
 
-                <option value="Dollar" class="in-of">Dollar</option>
-                <option value="Yen" class="in-of">Yen</option>
-                <option value="Euro" class="in-of">Euro</option>
-            </select>*@
-            @*</div>*@
+                @*<div class="down-top">
+                        <select class="in-drop">
+                            <option value="English" class="in-of">English</option>
+                            <option value="Japanese" class="in-of">Japanese</option>
+                            <option value="French" class="in-of">French</option>
+                            <option value="German" class="in-of">German</option>
+                        </select>
+                    </div>
+                    <div class="down-top top-down">
+                        <select class="in-drop">
+
+                            <option value="Dollar" class="in-of">Dollar</option>
+                            <option value="Yen" class="in-of">Yen</option>
+                            <option value="Euro" class="in-of">Euro</option>
+                        </select>*@
+                @*</div>*@
                 <!---->
                 <div class="clearfix"> </div>
             </div>
@@ -55,12 +56,25 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
+                @if (Request.IsAuthenticated)
+                {
+                @Html.AntiForgeryToken()
+                <ul class="login">
+                    <li><a href="/tai-khoan.html"><span> </span>Xin chào: @User.Identity.GetUserName()</a></li> |
+                    <li><a href="/logout" id="btnLogout">Thoát</a></li>
+                </ul>
+                }
+                else
+                {
                 <div class="account"><a href="login.html"><span> </span>Tài khoản của bạn</a></div>
                 <ul class="login">
                     <li><a href="/dang-nhap"><span> </span>Đăng nhập</a></li> |
                     <li><a href="/dang-ky"><span> </span>Đăng ký</a></li>
-                    
+
                 </ul>
+                }
+
+
                 <div class="cart"><a href="#"><span> </span>Giỏ hàng</a></div>
                 <div class="clearfix"> </div>
             </div>
