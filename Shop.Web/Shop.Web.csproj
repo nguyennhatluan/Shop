@@ -223,6 +223,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,6 +242,7 @@
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3385,15 +3387,21 @@
     <Content Include="Assets\client\images\wa.jpg" />
     <Content Include="Assets\client\images\wat.jpg" />
     <Content Include="Assets\client\images\zoom.png" />
+    <Content Include="Assets\client\js\bootbox.all.min.js" />
+    <Content Include="Assets\client\js\bootbox.js" />
+    <Content Include="Assets\client\js\Cart\addToCartJs.js" />
+    <Content Include="Assets\client\js\Cart\cartJs.js" />
     <Content Include="Assets\client\js\common.js" />
     <Content Include="Assets\client\js\Contact\contact.js" />
     <Content Include="Assets\client\js\Home\homeJs.js" />
     <Content Include="Assets\client\js\Home\searchProduct.js" />
+    <Content Include="Assets\client\js\jquery-1.10.2.js" />
     <Content Include="Assets\client\js\jquery.etalage.min.js" />
     <Content Include="Assets\client\js\jquery.flexisel.js" />
     <Content Include="Assets\client\js\jquery.min.js" />
     <Content Include="Assets\client\js\jquery.wmuSlider.js" />
     <Content Include="Assets\client\js\mustache.min.js" />
+    <Content Include="Assets\client\js\numeral.js" />
     <Content Include="Assets\client\js\ProductCategory\productCategory.js" />
     <Content Include="Assets\client\newuser.html" />
     <Content Include="bin\CKFinder.dll" />
@@ -3565,6 +3573,7 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.Common\Shop.Common.csproj">

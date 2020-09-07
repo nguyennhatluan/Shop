@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+@section cartJs{
+    <script src="~/Assets/client/js/mustache.min.js"></script>
+    <script src="~/Assets/client/js/numeral.js"></script>
+    <script src="~/Assets/client/js/bootbox.all.min.js"></script>
+    <script src="~/Assets/client/js/Cart/cartJs.js"></script>
+}
+<div class="main">
+    <h2>Giỏ hàng</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+        </tbody>
+    </table>
+    <div class="pull-right">
+        Tổng tiền: <span id="lblTotalOrder"></span>
+    </div>
+</div>
+<script id="tplCart" type="x-tmpl-mustache">
+    <tr>
+        <td>{{ProductId}}</td>
+        <td>{{ProductName}}</td>
+        <td><img src="{{Image}}" height="50" /></td>
+        <td>{{PriceF}}</td>
+        <td><input type="number" min="1" style="width:70px;" data-id="{{ProductId}}" data-price="{{Price}}" value="{{Quantity}}" class="input txtQuantity" /></td>
+        <td id="amount_{{ProductId}}">{{Amount}}</td>
+        <td><button class="btn btn-danger btnDeleteItem" data-id="{{ProductId}}"><i class="fa fa-remove"></i>Xóa</button></td>
+    </tr>
+</script>
+
